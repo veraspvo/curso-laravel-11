@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\StoreUserRequest;
@@ -83,5 +84,30 @@ class UserController extends Controller
         return redirect()
             ->route('users.index4')
             ->with('success', 'Usuário editado com sucesso!');    
+    }
+    public function show(string $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()
+            ->route('users.index4')
+            ->with('message', 'Usuário não encontrado!');
+        }
+        return view('admin.users.show', compact('user'));
+    }
+    public function destroy(string $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()
+            ->route('users.index4')
+            ->with('message', 'Usuário não encontrado!');
+        }
+        if (Auth::user()->id === $user->id) {
+            return back()
+            ->with('message', 'Você não pode deletar o usuário que esta logado!');
+        }
+        $user->delete();
+        return redirect()
+             ->route('users.index4')
+             ->with('success', 'Usuário deletado com sucesso!');
     }
 }

@@ -1,9 +1,13 @@
 @extends('admin.layouts.app')
 @section('title', 'Usuários')
 @section('content')
+
+@include('layouts.navigation')
+
     <h1>Usuários</h1>
 
     <a href="{{route('users.create')}}">Novo</a>
+    <a href="{{route('dashboard')}}">Voltar</a>
 
 <!-- Caso não use o component alert.blade.php    
     @if (session('success'))
@@ -40,6 +44,7 @@
                     <td>{{$user->email}}</td>
                     <td>
                         <a href="{{route('users.edit', $user->id)}}">Editar</a>
+                        <a href="{{route('users.show', $user->id)}}">Detalhes</a>
                     </td>
                 </tr>
             @empty 
