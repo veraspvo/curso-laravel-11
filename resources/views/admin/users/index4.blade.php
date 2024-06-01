@@ -2,8 +2,6 @@
 @section('title', 'Usuários')
 @section('content')
 
-@include('layouts.navigation')
-
     <h1>Usuários</h1>
 
     <a href="{{route('users.create')}}">Novo</a>

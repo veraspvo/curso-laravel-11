@@ -50,9 +50,6 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('users.index4')">
-                                {{ __('Cadastro de Usuários') }}
-                            </x-dropdown-link>
                         </form>
                     </x-slot>
                 </x-dropdown>
