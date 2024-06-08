@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use config\Custom as custom;
 
 class User extends Authenticatable
 {
@@ -48,12 +47,13 @@ class User extends Authenticatable
     }
     public function isAdmin()
     {
-        $is_Admin = false;
-        foreach (custom::$admins as $admin) {
-            if ($admin == $this->email) {
-                $is_Admin = true;   
-            }
-        }
-        return $is_Admin;
+        // $is_Admin = false;
+        // foreach (config('custom.admins') as $admin) {
+        //     if ($admin == $this->email) {
+        //         $is_Admin = true;   
+        //     }
+        // }
+        // return $is_Admin;
+        return in_array($this->email, config('custom.admins'));
     }
 }

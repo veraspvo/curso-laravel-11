@@ -16,11 +16,11 @@
 -->
     <!-- <x-alert/> Substitui as linhas acima -->
     @include ('components.alert') <!-- substitui as linhas acima -->
-    
-    <table>
+    <div class="flex items-center gap-4 bg-gray-100">
+    <table class="w-full divide-y divide-gray-200 grid-cols-3">
         <thead>
-            <tr>
-                <th>Nome</th>
+            <tr class="text-left ">
+                <th class="bg-red-500">Nome</th>
                 <th>E-mail</th>
                 <th>Ações</th>
             </tr>
@@ -52,5 +52,6 @@
             @endforelse
         </tbody>
     </table>
+    </div>
     {{ $users->links() }}
 @endsection

@@ -8,6 +8,7 @@
     </ul>
     <x-alert/>
 
+
     @can('is-admin')
     <form action="{{ route('users.destroy', $user->id) }}" method="POST">
         @csrf

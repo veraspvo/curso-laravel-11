@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('is-admin', function (User $user): bool {
-            return true;
+            return $user->isAdmin();
         });
     }
 }

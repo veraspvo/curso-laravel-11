@@ -1,14 +1,14 @@
 
 # Setup Docker Laravel 11 com PHP 8.3
-[Assine a Academy, e Seja VIP!](https://academy.especializati.com.br)
+[Curso Celke](https://academy.especializati.com.br)
 
 ### Passo a passo
-Clone Repositório - Curso Laravel 11
+Clone Repositório - curso-celke Laravel 11
 ```sh
-git clone -b laravel-11-with-php-8.3 https://github.com/especializati/setup-docker-laravel.git app-laravel
+git clone -b xxxxx https://github.com/xxxxxxxxxx.git curso-laravel-celke
 ```
 ```sh
-cd app-laravel
+cd curso-laravel-celke
 ```
 
 Suba os containers do projeto

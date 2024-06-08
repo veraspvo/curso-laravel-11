@@ -92,6 +92,8 @@ class UserController extends Controller
             ->route('users.index4')
             ->with('message', 'Usuário não encontrado!');
         }
+        //$ver = in_array($user->email, config('custom.admins'));
+        //dd($user);
         return view('admin.users.show', compact('user'));
     }
     public function destroy(string $id)
