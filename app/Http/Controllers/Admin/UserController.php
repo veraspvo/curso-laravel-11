@@ -35,6 +35,67 @@ class UserController extends Controller
         $users = User::paginate(10);
         return view('admin/users/index4', compact('users'));
     }
+    public function import(Request $request){
+        // Validar arquivo
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:1024',
+
+        ],[
+            'file.required' => 'Selecione o arquivo CSV',
+            'file.mimes' => 'O arquivo deve ser um arquivo CSV',
+            'file.max' => 'O arquivo deve ter no máximo :max Kb',]);
+        
+        // Criar a array com as colunas do banco de dados
+        $headers = ['name', 'email', 'email_verified_at','password'];
+    
+        // ######################################################## 
+        // PRIMEIRA MANEIRA DE FAZER A LEITURA DO ARQUIVO
+        // Ler o arquivo CSV
+        $file = fopen($request->file('file'), 'r');
+        // Ler o arquivo linha por linha;
+        $users = [];
+        while (($row = fgetcsv($file)) !== false) {
+            // Converter a linha em array
+            $users[] = array_combine($headers, $row);
+        }
+        fclose($file);
+        // Inseririr no BD
+        User::insert($users);
+        // FIM DA PRIMEIRA MANEIRA DE FAZER A LEITURA DO ARQUIVO
+        // ########################################################
+        
+
+    /*
+        // SEGUNDA MANEIRA DE FAZER A LEITURA DO ARQUIVO CASO A SEPARAÇÃO NÃO FOR O PADRAO CSV
+        // receber o arquivo CSV, ler os dados e converter em array
+        $dataFile = $request->file('file'); // recebe o arquivo CSV
+        //faz a leitura do arquivo CSV
+        $dataFile = file($dataFile);
+        // Converter os dados lidos do arquivo CSV em array
+        $dataFile = array_map('str_getcsv', $dataFile);
+        // percorre o array e insere os dados no BD
+        foreach ($dataFile as $keyData => $row) {
+            // CONVERTER A LINHA EM ARRAY
+            $values = explode(';', $row[0]);
+            // PERCORRER AS COLUNAS DO CABEÇALHO
+            foreach ($headers as $key => $header) {
+                // PERCORRER AS COLUNAS DO ARRAY DE VALORES
+                $arrayValues[$keyData][$header] = $values[$key];
+            }
+        }
+        // inserir registros no BD
+        // User::insert($arrayValues);
+        // ########################################################
+        // FIM DA SEGUNDA MANEIRA DE FAZER A LEITURA DO ARQUIVO
+    */
+    }
+    public function index5() 
+    {
+        $users = User::all();
+        //dd($users);
+        return view ('users/index5', compact('users'));
+    
+    }
     public function create() 
     {
         return view('admin/users/create');

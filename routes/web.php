@@ -20,6 +20,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
     Route::post('/users/store',[UserController::class,'store'])->name('users.store');
     Route::get('/users/create',[UserController::class,'create'])->name('users.create');
+    Route::post('/users5/import',[UserController::class,'import'])->name('users5.import');
+    Route::get('/users5',[UserController::class,'index5'])->name('users.index5');
     Route::get('/users4',[UserController::class,'index4'])->name('users.index4');
     Route::get('/users3',[UserController::class,'index3'])->name('users.index3');
     Route::get('/users2',[UserController::class,'index2'])->name('users.index2');
@@ -27,6 +29,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 require __DIR__.'/auth.php';
